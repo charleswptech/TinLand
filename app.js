@@ -49,6 +49,12 @@ const users = {
     role: 'you have 0 tin credits',
     bio: 'More features coming soon',
   },
+  Kevin: {
+    username: 'Kevin',
+    password: 'kevin_1515',
+    email: 'Kevin!',
+    role: 'You have 0 tin credits!',
+    bio: 'Construction Underway!'
 };
 document.getElementById('citizenship-test-form')?.addEventListener('submit', function (event) {
   event.preventDefault();
