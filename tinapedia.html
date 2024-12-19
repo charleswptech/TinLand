@@ -17,13 +17,18 @@
       color: #ffffff;
       padding: 15px 20px;
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-start; /* Change this to align to the left */
       align-items: center;
+      position: fixed; /* Add this line for sticky header */
+      top: 0;
+      width: 100%; /* Make the header full width */
+      z-index: 10; /* Ensure the header stays on top */
     }
 
     #header h1 {
       margin: 0;
       font-size: 2em;
+      margin-right: 20px; /* Add space between the title and the buttons */
     }
 
     #topic-bar {
@@ -51,6 +56,8 @@
       background-color: #ffffff;
       border: 1px solid #ccc;
       border-radius: 8px;
+      /* Add padding to account for sticky header */
+      padding-top: 70px; /* Adjust this value to match header height */
     }
 
     .entry {
@@ -95,6 +102,11 @@
     <div id="topic-bar">
       <a href="#timland">Timland</a>
       <a href="#tin-can">Tin Can</a>
+      <a href="#tinland">Tinland</a>
+      <a href="#tinner">Tinner/Timmer</a>
+      <a href="#Cosmo">Cosmo</a>
+      <a href="#Library">Library</a>
+      <a href="#Tim">Tim</a>
 
     </div>
   </div>
@@ -102,11 +114,31 @@
   <div id="content">
     <div class="entry" id="timland">
       <h2>Timland</h2>
-      <p>Enemy</p>
+      <p><strong>Overview</strong><br>Enemy. We are at war with them. Lead by PFL zain. Timland worships a fictional character called tim who sings a mandarin song. Timland has sworn to destroy us and we are trying our best to sabatoge them.<br><strong>Start</strong><br>Timland started when zain,uhjin and kevin decided to create a currency called "Tim Dollars". Their currency soon started a society focused on worshiping Tim and candy. <br><strong>Other Info</strong><br>Timland currently has a site at wojiaotim.com and is at war with us.</p>
     </div>
     <div class="entry" id="tin-can">
       <h2>Tin Can</h2>
-      <p>God.</p>
+      <p>The god in the Tinland church. While Tinland doesnt require worship of hip many Tinizens to worship his holy greatness. Tin can is believed to have given Tinizens the power to build strong buildings and skyscrapers by turning himself into steel. He also is belived to have helped Tinizens pioneer the food market by showing them how to use tin cans to store food. Overall the Tin Can is adored by Tinizens and will remain a figure to look up to.</p>
+    </div>
+    <div class="entry" id="tinland">
+      <h2>Timland</h2>
+      <p><strong>Overview</strong><br>Originaly started to harbour people exiled from Timland, Tinland stands against totalitarian governments (such as timland) and focuses on delivering the best experience to its citizens<br><strong>Start</strong><br>Started by Johhny and Maks Tinland quickly gained citizens unhappy with the situation in Timland<br><strong>Other Info</strong><br>Tinland is cool</p>
+    </div>
+    <div class="entry" id="tinner">
+      <h2>Tinner/Timmer</h2>
+      <p><strong>Overview</strong>Tinner/Timmer are words used as offensive slurs against the other side in the Tinland-Timland war. Timizens call Tinizens Tinners and vice-versa. <br><strong>Start</strong><br>These terms were originaly developed to be a play on the "n-word" only people in mandarin class could say. However, the pool of people that could say it was consistently increased until it was okay for everyone. Now it is used a slur against the other side in the war.<br><strong>Implications</strong><br>While these words still have deragotory implications they are very overused and have pretty much lost their meaning.</p>
+    </div>
+    <div class="entry" id="cosmo">
+      <h2>Cosmo</h2>
+      <p>Cosmo is a dog from the learn the spanish alphabet song from spanish class. Probably the only thing Tinland and Timlnd agree on is the evilness of cosmo. Cosmo is believed to have been a companion of tim long ago. Legends say he ate Lord Tin Can and tried to attack Tim but Tim ended up eating him. Some believe that Tim eating Cosmo was a response to hip destroying Lord Tin Can. Some folk stories even say that Tim and Tin were friends until Cosmo came along and broke them up. Certian profesies say they will reunite in 2025. But that is for us to see. All that we know is that Cosmo is evil.</p>
+    </div>
+    <div class="entry" id="Library">
+      <h2>Library</h2>
+      <p>A sacred area for tinizens. Here meeting are held and candy is shared.</p>
+    </div>
+    <div class="entry" id="Tim">
+      <h2>Tim</h2>
+      <p>Tim is a mandarin cartoon character worshiped in Timland. He is known for singing a song that goes: "Nihao Nihao Wojiao Tim Zaijan Zaijan ZaiaiaiaiJan". He is reveered by Timizens and despized by tinizens. Tim is inherently evil.</p>
     </div>
 
 
