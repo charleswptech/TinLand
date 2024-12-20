@@ -147,8 +147,7 @@
 </style>
 <script>
   // Sample accounts for demo purposes
-const users = {
- // Sample accounts for demo purposes
+// Sample accounts for demo purposes
 const users = {
   Liam: {
     username: 'Liam',
@@ -206,18 +205,21 @@ window.onload = function () {
 // Handle product purchase
 function buyProduct(productCost) {
   const user = window.currentUser;
-  
+
   if (user.role >= productCost) {
     // Deduct the product cost from the user's balance
     user.role -= productCost;
     // Update the displayed user credits
     document.getElementById('user-credits-display').textContent = `You have ${user.role} tin credits`;
 
+    // Redirect to done.html after successful purchase
     alert('Purchase successful!');
+    window.location.href = 'done.html';
   } else {
     alert('You do not have enough tin credits to make this purchase.');
   }
 }
+
 
 </script>
  -->
