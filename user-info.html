@@ -51,60 +51,41 @@
 <script>
   // Sample accounts for demo purposes
 const users = {
+ // Sample accounts for demo purposes
+const users = {
   Liam: {
     username: 'Liam',
     password: 'password1',
     email: 'Liam!',
-    role: 'You have 3 tin credits',
-    bio: 'More features coming soon',
-  },
-    Noah: {
-    username: 'Noah',
-    password: 'noahchoi123',
-    email: 'Noah!',
-    role: 'You have 12 tin credits',
+    role: 3,  // 3 tin credits
     bio: 'More features coming soon',
   },
   Johnny: {
     username: 'Johnsidus the Third',
     password: 'password2',
     email: 'Johnsidius the third!',
-    role: 'You have 3 tin credits',
+    role: 3,  // 3 tin credits
+    bio: 'More features coming soon',
+  },
+  Noah: {
+    username: 'Noah',
+    password: 'noahchoi123',
+    email: 'Noah!',
+    role: 12, // 12 tin credits
     bio: 'More features coming soon',
   },
   Kevin: {
     username: 'Kevin',
     password: 'password3',
     email: 'Kevin!',
-    role: 'you have 0 tin credits',
+    role: 0, // 0 tin credits
     bio: 'More features coming soon',
   },
   Maks: {
     username: 'Maks',
     password: 'password4',
     email: 'Maks!',
-    role: 'you have 100000000000 tin credits',
-    bio: 'More features coming soon',
-  },
-  Charles: {
-    username: 'Charles',
-    password: 'password5',
-    email: 'Charles!',
-    role: 'you have 100 tin credits',
-    bio: 'More features coming soon',
-  },
-  Taxo: {
-    username: 'Maxo Taxo',
-    password: 'password5',
-    email: 'Maxo Taxo!',
-    role: 'you have 0 tin credits',
-    bio: 'More features coming soon',
-  },
-  Dayden: {
-    username: 'Dayden',
-    password: 'password6',
-    email: 'Dayden!',
-    role: 'you have 0 tin credits',
+    role: 100000000000, // 100 billion tin credits (for example)
     bio: 'More features coming soon',
   },
 };
@@ -168,7 +149,7 @@ if (window.location.pathname.includes('user-info.html')) {
   if (username) {
     const user = users[username];
     document.getElementById('user-name').textContent = ` Hello, ${user.username}`;
-    document.getElementById('user-role').textContent = ` Congrats: ${user.role}`;
+    document.getElementById('user-role').textContent = ` You have ${user.role}$ Tin Credits`;
     document.getElementById('user-bio').textContent = `Dont worry! ${user.bio}`;
   } else {
     // Redirect to login if user is not logged in
