@@ -8,7 +8,7 @@
             color: #0099ff;
             margin-bottom: 0;
         }
-</style><!-- <!DOCTYPE html>
+</style> <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -18,7 +18,6 @@
 </head>
 <body>
 
-  <!-- Navigation Bar -->
 
   <button class="buy-button" onclick="window.location.href='index.html'">Home</button>
   <!-- Shop Page Content -->
