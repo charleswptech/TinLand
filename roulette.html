@@ -1,1 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roulette - Tinland Casino</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #181818;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        .container {
+            margin-top: 20px;
+        }
+
+        .balance {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .roulette-wheel {
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background-color: #222;
+            position: relative;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 6s cubic-bezier(0.25, 0.45, 0.45, 0.95);
+        }
+
+        .wheel-number {
+            position: absolute;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.5s;
+        }
+
+        .wheel-number.red {
+            color: red;
+        }
+
+        .wheel-number.black {
+            color: black;
+        }
+
+        .wheel-number.green {
+            color: green;
+        }
+
+        .roulette-table {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 10px;
+            margin: 20px auto;
+            max-width: 600px;
+        }
+
+        .roulette-cell {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .roulette-cell:hover {
+            background-color: #555;
+        }
+
+        .button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+
+        .bet-input {
+            font-size: 18px;
+            padding: 5px;
+            width: 60px;
+        }
+
+        .info {
+            font-size: 16px;
+            color: #ddd;
+            margin-top: 20px;
+        }
+
+        .spin-info {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .active-bets {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #ccc;
+        }
+
+        .ball {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: transform 6s ease-out, opacity 0.5s;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Welcome to Tinland Roulette</h1>
+    </header>
+
+    <div class="container">
+        <div class="balance" id="balance">$100</div>
+
+        <div class="roulette-wheel" id="rouletteWheel">
+            <div class="ball" id="ball"></div>
+        </div>
+
+        <div>
+            <input type="number" id="betAmount" class="bet-input" placeholder="Bet" min="1">
+            <button class="button" onclick="spinWheel()">Spin the Wheel</button>
+        </div>
+
+        <div class="info" id="spinResult">Place your bet and spin the wheel!</div>
+        <div class="spin-info" id="spinInfo"></div>
+
+        <div class="active-bets" id="activeBets">Active Bets: None</div>
+
+        <div class="roulette-table" id="numberTable">
+        </div>
+    </div>
+
+    <script>
+        let balance = 100;
+        let bets = [];
+        let betAmount = 0;
+
+        function updateBalance() {
+            document.getElementById('balance').innerText = `$${balance}`;
+        }
+
+        function createNumberTable() {
+            const numberTable = document.getElementById('numberTable');
+            for (let i = 0; i < 37; i++) {
+                let numberDiv = document.createElement('div');
+                numberDiv.classList.add('roulette-cell');
+                numberDiv.innerText = i;
+                numberDiv.onclick = function () {
+                    placeBet(i);
+                };
+                numberTable.appendChild(numberDiv);
+            }
+        }
+
+        function createRouletteWheel() {
+            const wheel = document.getElementById('rouletteWheel');
+            const numbers = [
+                0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10, 5, 
+                24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29, 7, 28, 12, 35, 3, 26
+            ];
+
+            for (let i = 0; i < numbers.length; i++) {
+                let numberDiv = document.createElement('div');
+                numberDiv.classList.add('wheel-number');
+
+                if (numbers[i] === 0) {
+                    numberDiv.classList.add('green');
+                } else if (i % 2 === 0) {
+                    numberDiv.classList.add('red');
+                } else {
+                    numberDiv.classList.add('black');
+                }
+
+                let angle = (360 / numbers.length) * i;
+                numberDiv.style.transform = `rotate(${angle}deg) translate(210px) rotate(-${angle}deg)`;
+                numberDiv.innerText = numbers[i];
+                wheel.appendChild(numberDiv);
+            }
+        }
+
+        function placeBet(number) {
+            if (!bets.includes(number)) {
+                bets.push(number);
+                document.getElementById('activeBets').innerText = `Active Bets: ${bets.join(', ')}`;
+            }
+        }
+
+        function spinWheel() {
+            betAmount = parseInt(document.getElementById('betAmount').value);
+            if (betAmount <= 0 || isNaN(betAmount)) {
+                document.getElementById('spinResult').innerText = "Please enter a valid bet amount!";
+                return;
+            }
+
+            if (betAmount > balance) {
+                document.getElementById('spinResult').innerText = "Insufficient balance!";
+                return;
+            }
+
+            const wheel = document.getElementById('rouletteWheel');
+            const ball = document.getElementById('ball');
+            ball.style.opacity = 1;
+            ball.style.transition = 'none';
+            ball.style.transform = 'translate(-50%, -50%)'; // Reset ball position
+
+            wheel.style.transition = 'transform 6s cubic-bezier(0.25, 0.45, 0.45, 0.95)';
+            const spins = Math.floor(Math.random() * 3) + 3; // Random number of full rotations (3 to 5)
+            const wheelRotation = 360 * spins;
+            const randomResult = Math.floor(Math.random() * 37);
+            const anglePerNumber = 360 / 37;
+            const finalRotation = wheelRotation + (anglePerNumber * randomResult);
+            wheel.style.transform = `rotate(${finalRotation}deg)`;
+
+            setTimeout(() => {
+                const ballRotation = (anglePerNumber * randomResult) + 90;
+                ball.style.transition = 'transform 0.5s ease-out';
+                ball.style.transform = `rotate(${ballRotation}deg) translate(210px) rotate(-${ballRotation}deg)`; // Ball lands correctly
+
+                document.getElementById('spinResult').innerText = `The wheel landed on ${randomResult}.`;
+
+                let win = false;
+                bets.forEach(bet => {
+                    if (bet === randomResult) {
+                        win = true;
+                        balance += betAmount * 35;
+                    }
+                });
+
+                if (win) {
+                    document.getElementById('spinResult').innerText += ` You win! Your balance is now $${balance}.`;
+                } else {
+                    balance -= betAmount * bets.length;
+                    document.getElementById('spinResult').innerText += ` You lose. Your balance is now $${balance}.`;
+                }
+
+                bets = [];
+                document.getElementById('activeBets').innerText = `Active Bets: None`;
+
+                updateBalance();
+            }, 6000);
+        }
+
+        window.onload = function () {
+            createRouletteWheel();
+            createNumberTable();
+            updateBalance();
+        }
+    </script>
+</body>
+</html>
 
