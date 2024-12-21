@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,200 +8,228 @@
 </head>
 <body>
 
-    <h1>Hey there!</h1>
-    <h1>Welcome to Tinland!</h1>
-   <a href="tinapedia.html" class="button" target="_blank" style="font-size: 1.2em; color: white;"> Tinapedia</a>
-   <a href="user-info.html" class="button" target="_blank" style="font-size: 1.2em; color: white;"> your page</a>
-   <a href="funds.html" class="button" target="_blank" style="font-size: 1.2em; color: white;"> Funds</a>
-   <a href="gov.html" class="button" target="_blank" style="font-size: 1.2em; color: white;"> Government Page</a>
-  <h2>Our Beliefs:</h2>
-  <div class="beliefs-container">
-    <ul>
-      <li>Freedom of worship.</li>
-      <li>Equal representation.</li>
-      <li>Secular governemnt.</li>
-      <li>Fun</li>
-    </ul>
-  </div>
-  <h2> Citizenship: </h2>
-  <br>
- <div class="beliefs-container">
-   <h3>Join Our Cause!</h3>
-   <p> We allow all people to join and strongly encourage you to do so! Were ok with dual citizenship and inactivity. So just fill out the two question form and join something truly special!</p>
-   <a href="citizenship-test.html" class="button" target="_blank"> Become a Citiznen</a>
- </div>
-  <h2> Donations</h2>
-  <h3>(OPTIONAL)</h3>
-   <div class="beliefs-container">
-     <h3>Help us out!</h3>
-     <p> We dont want you to donate your money. But if youre willing to we'd love it if you'd donate your time by meeting up every wensday at lunch in the library!</p>
-     <a href="donate.html" class="button" target="_blank" style="font-size: 1.2em; color: white;"> Learn More about donations!</a>
-   </div>
-  <h2>News:</h2>
-   <div class="beliefs-container">
-     <h3>War with Timland!</h3>
-     <p> We have officially gone to war with Timland. Serving in the army is optional.</p>
-     <a href="military.html" class="button" target="_blank"> Learn More</a>
-   </div>
-  <h1>Lemon Cult</h1>
-  <h2>Tinland affiliate</h2>
-  <div class="beliefs-container">
-<h2>Lemon Cult is a Tinland afilliate focused on lemons. Visit the site to learn more!</h2>
-  <a href="lemoncult.html" class="button" target="_blank"> Lemon Cult</a>
-  </div>
-  <div class="beliefs-container">
-    <h1 id="welcome-message">Welcome to Tinland</h1>
+  <header>
+    <div class="container">
+      <h1>Welcome to Tinland!</h1>
+      <p>Your journey starts here!</p>
+    </div>
+  </header>
 
-    <a href="login.html" id="login-btn" class="btn" style="display: none;">Login</a>
-    <p id="error-message" class="error-message"></p>
-  </div>
+  <main>
+    <section class="container">
+      <div class="column">
+        <h2>Navigation</h2>
+        <a href="tinapedia.html" class="button">Tinapedia</a>
+        <a href="user-info.html" class="button">Your Page</a>
+        <a href="funds.html" class="button">Funds</a>
+        <a href="gov.html" class="button">Government Page</a>
+      </div>
+
+      <div class="column">
+        <h2>Our Beliefs</h2>
+        <ul>
+          <li>Freedom of worship.</li>
+          <li>Equal representation.</li>
+          <li>Secular government.</li>
+          <li>Fun</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="container">
+      <div class="column">
+        <h2>Citizenship</h2>
+        <p>Join our cause and make a difference! We accept dual citizenship and inactive members. Just fill out the form and become part of something truly special.</p>
+        <a href="citizenship-test.html" class="button">Become a Citizen</a>
+      </div>
+
+      <div class="column">
+        <h2>Donations</h2>
+        <p>We don't ask for money, but if you want to help, join us every Wednesday for a meetup at the library!</p>
+        <a href="donate.html" class="button">Learn More about Donations</a>
+      </div>
+    </section>
+
+    <section class="container">
+      <div class="column">
+        <h2>News</h2>
+        <h3>War with Timland!</h3>
+        <p>We have officially gone to war with Timland. Serving in the army is optional.</p>
+        <a href="military.html" class="button">Learn More</a>
+      </div>
+
+      <div class="column">
+        <h2>Lemon Cult</h2>
+        <p>Lemon Cult is a Tinland affiliate focused on lemons. Visit the site to learn more!</p>
+        <a href="lemoncult.html" class="button">Lemon Cult</a>
+      </div>
+    </section>
+
+    <section class="login">
+      <h1 id="welcome-message">Welcome to Tinland</h1>
+      <a href="login.html" id="login-btn" class="btn" style="display: none;">Login</a>
+      <p id="error-message" class="error-message"></p>
+    </section>
+  </main>
 
   <script src="app.js"></script>
 </body>
 </html>
+
 <style>
-  /* General Reset */
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
 
-  /* Body and Background */
   body {
-    background-color: #121212; /* Dark background */
-    color: #e0e0e0; /* Light text color */
+    background-color: #121212;
+    color: #e0e0e0;
     line-height: 1.6;
+    padding: 20px 0;
+    font-size: 16px;
   }
 
-  /* Header */
+  header {
+    background-color: #6200ea;
+    padding: 40px 0;
+    text-align: center;
+    color: white;
+    border-radius: 10px;
+    margin-bottom: 30px;
+  }
 
-  /* Beliefs Container */
-  .beliefs-container {
+  header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+  }
+
+  header p {
+    font-size: 1.2em;
+  }
+
+  main {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin-top: 20px; /* Add margin for spacing */
-    margin-bottom: 20px;
-    padding: 20px;
-    border-radius: 30px;
-    background-color: #1c1c1c; /* Darker background for the content area */
-    width: 80%; /* Set a relative width for better responsiveness */
-    max-width: 700px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Light shadow for depth */
+    gap: 40px;
   }
 
-  .beliefs-container ul {
-    font-size: 18px; /* Adjust font size for readability */
-    list-style: none;
-  }
-
-  .beliefs-container p {
-    color: #b0b0b0; /* Light gray text for paragraphs */
-    text-align: center;
-    margin: 10px 20px;
-  }
-
-  .beliefs-container h1, .beliefs-container h2, .beliefs-container h3 {
-    margin-bottom: 15px;
-  }
-
-  .beliefs-container a.button {
-    background-color: #6200ea; /* Purple button */
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-decoration: none;
-    text-align: center;
-    display: inline-block;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-  }
-
-  .beliefs-container a.button:hover {
-    background-color: #3700b3; border-radius: 20px; transition-duration: .7s;
-  transition-timing-function: ease-in-out; /* Darker purple on hover */
-  }
-
-  /* News Section */
-  .beliefs-container h3 {
-    color: #ff79c6; /* Lighter color for news titles */
-  }
-
-  /* Footer or Additional Sections (if any) */
-  footer {
-    background-color: #1f1f1f;
-    color: #b0b0b0;
-    text-align: center;
-    padding: 15px 0;
-  }
-
-  footer p {
-    font-size: 14px;
-  }
-
-  /* Forms and Buttons */
-  input, textarea {
-    background-color: #333;
-    color: #e0e0e0;
-    border: 1px solid #444;
-    padding: 10px;
-    border-radius: 5px;
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
     width: 100%;
-    max-width: 500px;
-    margin-top: 10px;
+    max-width: 1200px;
+    margin: 0 auto;
   }
 
-  input:focus, textarea:focus {
-    border-color: #bb86fc; /* Purple border on focus */
-    outline: none;
+  .column {
+    background-color: #1c1c1c;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   }
 
-  button {
+  h2 {
+    font-size: 1.8em;
+    color: #FF79C6;
+    margin-bottom: 20px;
+  }
+
+  h3 {
+    font-size: 1.4em;
+    color: #BB86FC;
+    margin-bottom: 10px;
+  }
+
+  p {
+    color: #B0B0B0;
+    margin-bottom: 20px;
+  }
+
+  ul {
+    font-size: 18px;
+    list-style: none;
+    color: #e0e0e0;
+    padding-left: 0;
+  }
+
+  ul li {
+    margin-bottom: 10px;
+  }
+
+  .button {
     background-color: #6200ea;
     color: white;
     padding: 10px 20px;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
+    border-radius: 30px;
+    text-decoration: none;
+    text-align: center;
+    font-size: 1em;
+    display: inline-block;
     transition: background-color 0.3s ease;
+    margin-top: 10px;
   }
 
-  button:hover {
+  .button:hover {
     background-color: #3700b3;
   }
 
-  /* Error message styling */
+  .login {
+    text-align: center;
+  }
+
   .error-message {
     color: #ff4d4d;
     font-size: 14px;
     text-align: center;
   }
 
-  /* Scrollbar */
-  ::-webkit-scrollbar {
-    width: 8px;
+  .login .btn {
+    background-color: #6200ea;
+    padding: 12px 24px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: white;
+    font-size: 1.2em;
+    transition: background-color 0.3s ease;
   }
 
-  ::-webkit-scrollbar-thumb {
-    background-color: #bb86fc;
-    border-radius: 4px;
+  .login .btn:hover {
+    background-color: #3700b3;
   }
 
-  ::-webkit-scrollbar-track {
-    background: #1f1f1f;
-  }
-  \header {
-    padding-top: 40px; /* Adds 40px padding to the top of the header */
-  }
+  @media screen and (max-width: 768px) {
+    .container {
+      grid-template-columns: 1fr;
+    }
 
-  h1 {
-    margin-top: 0; /* Optional, just to ensure no additional margin is added */
+    header h1 {
+      font-size: 2em;
+    }
+
+    header p {
+      font-size: 1em;
+    }
+
+    .column {
+      padding: 20px;
+    }
+
+    .button {
+      padding: 8px 16px;
+      font-size: 0.9em;
+    }
+
+    .login .btn {
+      padding: 10px 20px;
+      font-size: 1em;
+    }
   }
-
-
 </style>
+
 <script>
   // Sample accounts for demo purposes
 const users = {
