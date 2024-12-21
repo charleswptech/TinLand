@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tinland Blackjack</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #222;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #333;
+            padding: 15px;
+            text-align: center;
+            width: 100%;
+        }
+
+        header h1 {
+            font-size: 36px;
+            margin: 0;
+            color: #fff;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 10px 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 18px;
+        }
+
+        h2 {
+            font-size: 24px;
+            color: #fff;
+            margin-top: 20px;
+        }
+
+        #instructions {
+            margin: 20px auto;
+            width: 90%;
+            max-width: 700px;
+            padding: 20px;
+            background-color: #444;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        #instructions ul {
+            padding-left: 20px;
+            margin-top: 15px;
+        }
+
+        #instructions ul li {
+            margin-bottom: 10px;
+        }
+
+        #game {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px;
+            width: 90%;
+            max-width: 700px;
+            text-align: center;
+        }
+
+        .hand {
+            display: flex;
+            justify-content: center;
+            margin: 10px 0;
+            gap: 10px;
+        }
+
+        .card {
+            width: 60px;
+            height: 90px;
+            background-color: #f0c36d;
+            margin: 5px;
+            text-align: center;
+            line-height: 90px;
+            font-size: 18px;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        #buttons {
+            margin-top: 20px;
+        }
+
+        button {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        #game-status {
+            font-size: 18px;
+            margin-top: 20px;
+            color: #fff;
+        }
+
+        footer {
+            text-align: center;
+            background-color: #333;
+            padding: 10px;
+            color: #fff;
+            margin-top: 30px;
+            width: 100%;
+        }
+
+        /* Prevent text overlap */
+        .hand {
+            flex-wrap: wrap;
+            justify-content: flex-start;
+        }
+
+        #game-status p {
+            margin: 5px 0;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 28px;
+            }
+
+            nav ul li a {
+                font-size: 16px;
+            }
+
+            .card {
+                width: 50px;
+                height: 75px;
+                font-size: 16px;
+            }
+
+            #game-status {
+                font-size: 16px;
+            }
+
+            #instructions ul li {
+                font-size: 16px;
+            }
+
+            button {
+                font-size: 16px;
+                padding: 8px 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Tinland Blackjack</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#" id="play-now">Play Now</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="instructions">
+        <h2>How to Play</h2>
+       <ul>
+            <li><strong>Step 1:</strong> Click "Play Now" to start the game.</li>
+            <li><strong>Step 2:</strong> Your hand will be dealt automatically.</li>
+            <li><strong>Step 3:</strong> Choose to 'Hit' or 'Stand' to play your turn.</li>
+            <li><strong>Step 4:</strong> Try to beat the dealer’s hand without going over 21!</li>
+        </ul>
+    </section>
+
+    <section id="game" style="display:none;">
+        <h2>Your Hand</h2>
+        <div id="player-hand" class="hand"></div>
+
+        <div id="buttons">
+            <button id="hit">Hit</button>
+            <button id="stand">Stand</button>
+        </div>
+
+        <h2>Dealer's Hand</h2>
+        <div id="dealer-hand" class="hand"></div>
+
+        <div id="game-status">
+            <p>Your Score: <span id="player-score">0</span></p>
+            <p>Dealer's Score: <span id="dealer-score">0</span></p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Tinland Games. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        let deck = [];
+        let playerHand = [];
+        let dealerHand = [];
+        let playerScore = 0;
+        let dealerScore = 0;
+
+        const suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades'];
+        const values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
+
+        function createDeck() {
+            deck = [];
+            for (let suit of suits) {
+                for (let value of values) {
+                    deck.push({ value, suit });
+                }
+            }
+            deck = shuffleDeck(deck);
+        }
+
+        function shuffleDeck(deck) {
+            for (let i = deck.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [deck[i], deck[j]] = [deck[j], deck[i]];
+            }
+            return deck;
+        }
+
+        function dealCard(hand) {
+            const card = deck.pop();
+            hand.push(card);
+            return card;
+        }
+
+        function calculateScore(hand) {
+            let score = 0;
+            let aces = 0;
+
+            for (let card of hand) {
+                if (card.value === 'J' || card.value === 'Q' || card.value === 'K') {
+                    score += 10;
+                } else if (card.value === 'A') {
+                    score += 11;
+                    aces++;
+                } else {
+                    score += parseInt(card.value);
+                }
+            }
+
+            while (score > 21 && aces > 0) {
+                score -= 10;
+                aces--;
+            }
+
+            return score;
+        }
+
+        function displayCards() {
+            document.getElementById('player-hand').innerHTML = '';
+            document.getElementById('dealer-hand').innerHTML = '';
+
+            playerHand.forEach(card => {
+                const cardElement = document.createElement('div');
+                cardElement.classList.add('card');
+                cardElement.innerText = `${card.value} ${card.suit}`;
+                document.getElementById('player-hand').appendChild(cardElement);
+            });
+
+            dealerHand.forEach(card => {
+                const cardElement = document.createElement('div');
+                cardElement.classList.add('card');
+                cardElement.innerText = `${card.value} ${card.suit}`;
+                document.getElementById('dealer-hand').appendChild(cardElement);
+            });
+
+            playerScore = calculateScore(playerHand);
+            dealerScore = calculateScore(dealerHand);
+            document.getElementById('player-score').innerText = playerScore;
+            document.getElementById('dealer-score').innerText = dealerScore;
+        }
+
+        function startGame() {
+            createDeck();
+            playerHand = [dealCard(playerHand), dealCard(playerHand)];
+            dealerHand = [dealCard(dealerHand), dealCard(dealerHand)];
+            displayCards();
+            document.getElementById('game').style.display = 'block';
+        }
+
+        function hit() {
+            playerHand.push(dealCard(playerHand));
+            displayCards();
+            if (playerScore > 21) {
+                alert("You busted! Dealer wins.");
+                resetGame();
+            }
+        }
+
+        function stand() {
+            while (dealerScore < 17) {
+                dealerHand.push(dealCard(dealerHand));
+                dealerScore = calculateScore(dealerHand);
+            }
+
+            displayCards();
+
+            if (dealerScore > 21 || playerScore > dealerScore) {
+                alert("You win!");
+            } else if (playerScore < dealerScore) {
+                alert("Dealer wins!");
+            } else {
+                alert("It's a tie!");
+            }
+            resetGame();
+        }
+
+        function resetGame() {
+            document.getElementById('game').style.display = 'none';
+            document.getElementById('instructions').style.display = 'block';
+        }
+
+        document.getElementById('play-now').addEventListener('click', () => {
+            document.getElementById('instructions').style.display = 'none';
+            startGame();
+        });
+
+        document.getElementById('hit').addEventListener('click', hit);
+        document.getElementById('stand').addEventListener('click', stand);
+    </script>
+</body>
+
+</html>
