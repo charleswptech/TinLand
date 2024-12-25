@@ -119,6 +119,7 @@
     <script>
         let musicPlayed = false;  // Track if music has been played
         let typingInterval = null;
+        let fienPopUpInterval = null;  // For controlling when "fe!n" pops up
 
         function sendMessage() {
             var userInput = document.getElementById('user-input').value;
@@ -158,6 +159,8 @@
                 if (!musicPlayed) {
                     musicPlayed = true;
                     playMusic();
+                    // Start the "fe!n" pop-up 22 seconds after the music starts
+                    setTimeout(startFienPopUp, 22000); // Start after 22 seconds
                 }
                 // Start continuous F!en loop
                 startFienLoop();
@@ -189,6 +192,39 @@
             iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
             iframe.allowFullscreen = true;
             document.body.appendChild(iframe); // Embed the YouTube video to play automatically
+        }
+
+        // Function to create and animate "fe!n" popping up on the screen
+        function startFienPopUp() {
+            if (fienPopUpInterval) clearInterval(fienPopUpInterval); // Prevent multiple intervals
+
+            fienPopUpInterval = setInterval(function() {
+                var fienText = document.createElement('div');
+                fienText.textContent = "fe!n";
+                fienText.style.position = "absolute";
+                fienText.style.color = "white";
+                fienText.style.fontSize = Math.floor(Math.random() * 60 + 80) + "px"; // Much larger font size
+                fienText.style.fontWeight = "bold";
+                fienText.style.opacity = 1;
+                fienText.style.transition = "opacity 2s ease-out";
+
+                // Random position
+                var x = Math.floor(Math.random() * window.innerWidth);
+                var y = Math.floor(Math.random() * window.innerHeight);
+
+                fienText.style.left = x + "px";
+                fienText.style.top = y + "px";
+
+                document.body.appendChild(fienText);
+
+                // Animate the fading out of the text
+                setTimeout(function() {
+                    fienText.style.opacity = 0;
+                    setTimeout(function() {
+                        fienText.remove(); // Remove the text from DOM after fading out
+                    }, 2000);
+                }, 0); // Start fading immediately
+            }, 500); // Create a new "fe!n" text every 500ms
         }
     </script>
 
