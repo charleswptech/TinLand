@@ -16,14 +16,6 @@
   </header>
 
   <main>
-     <div class="popup" id="myPopup">
-    <span class="close-button" onclick="closePopup('myPopup')">&times;</span>
-    <div class="popup-content">
-      <h1>Hey there!</h1>
-      <h2>There's some news you need to know!</h2>
-      <h3>Tinland Rations have started! Every Tinizen will now see "rations credits" on their account page! Each credit is redeemable for 1 candy. Credits reset every 1.5 months. You will be awarded credits for donating!</h3>
-    </div>
-    </div>
     <div class="navbar">
       <ul>
         <li><a href="login.html">Login</a></li>
@@ -452,13 +444,5 @@ if (window.location.pathname.includes('user-info.html')) {
     window.location.href = 'index.html';
   });
 }
-      function openPopup(popupId) {
-        document.getElementById(popupId).style.display = "block";
-      }
-      function closePopup(popupId) {
-        document.getElementById(popupId).style.display = "none";
-      }
-      window.onload = function() {
-        openPopup('myPopup'); 
-      };
+   
 </script>
