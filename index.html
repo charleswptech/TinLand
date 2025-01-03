@@ -16,6 +16,14 @@
   </header>
 
   <main>
+     <div class="popup" id="myPopup">
+    <span class="close-button" onclick="closePopup('myPopup')">&times;</span>
+    <div class="popup-content">
+      <h1>Hey there!</h1>
+      <h2>There's some news you need to know!</h2>
+      <h3>Tinland Rations have started! Every Tinizen will now see "rations credits" on their account page! Each credit is redeemable for 1 candy. Credits reset every 1.5 months. You will be awarded credits for donating!</h3>
+    </div>
+    </div>
     <div class="navbar">
       <ul>
         <li><a href="login.html">Login</a></li>
@@ -269,6 +277,32 @@ h3{
   font-size: 2.0em;
   text-align:center;
 }
+  .popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      padding: 20px;
+      border-radius: 5px;
+      z-index: 100;
+      width: 300px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .popup-content {
+      text-align: center;
+    }
+
+    .close-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+      font-size: 20px;
+    }
+
 </style> 
 
 <script>
@@ -278,56 +312,63 @@ const users = {
     username: 'Liam',
     password: 'password1',
     email: 'Liam!',
-    role: 'You have 3 tin credits',
+    role: 'You have 40 rations credits',
     bio: 'More features coming soon',
   },
   Johnny: {
     username: 'Johnsidus the Third',
     password: 'password2',
     email: 'Johnsidius the third!',
-    role: 'You have 3 tin credits',
+    role: 'You have 40 rations credits',
     bio: 'More features coming soon',
   },
   Kevin: {
     username: 'Kevin',
     password: 'password3',
     email: 'Kevin!',
-    role: 'you have 0 tin credits',
+    role: 'you have 40 rations credits',
     bio: 'More features coming soon',
   },
     Noah: {
     username: 'Noah',
     password: 'noahchoi123',
     email: 'Noah!',
-    role: 'you have 100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 tin credits',
+    role: 'you have 40 rations credits',
     bio: 'More features coming soon',
   },
   Maks: {
     username: 'Maks',
     password: 'password4',
     email: 'Maks!',
-    role: 'you have 100000000000 tin credits',
+    role: 'you have 40 rations credits',
     bio: 'More features coming soon',
   },
   Charles: {
     username: 'Charles',
     password: 'password5',
     email: 'Charles!',
-    role: 'you have 100 tin credits',
+    role: 'you have 40 rations credits',
     bio: 'More features coming soon',
   },
   Taxo: {
     username: 'Maxo Taxo',
     password: 'password5',
     email: 'Maxo Taxo!',
-    role: 'you have 0 tin credits',
+    role: 'you have 40 rations credits',
     bio: 'More features coming soon',
   },
   Dayden: {
     username: 'Dayden',
     password: 'password6',
     email: 'Dayden!',
-    role: 'you have 0 tin credits',
+    role: 'you have 10 rations credits',
+    bio: 'More features coming soon',
+  },
+    Chris: {
+    username: 'Chris',
+    password: 'password7',
+    email: 'Chris!',
+    role: 'you have 40 rations credits',
     bio: 'More features coming soon',
   },
 };
@@ -402,5 +443,13 @@ if (window.location.pathname.includes('user-info.html')) {
     window.location.href = 'index.html';
   });
 }
-
+      function openPopup(popupId) {
+        document.getElementById(popupId).style.display = "block";
+      }
+      function closePopup(popupId) {
+        document.getElementById(popupId).style.display = "none";
+      }
+      window.onload = function() {
+        openPopup('myPopup'); 
+      };
 </script>
