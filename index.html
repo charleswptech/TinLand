@@ -144,16 +144,23 @@
     margin-bottom: 20px;
   }
 
-  ul {
-    font-size: 18px;
-    list-style: none;
-    color: #e0e0e0;
-    padding-left: 0;
-  }
+ul {
+  font-size: 18px;
+  list-style: none;
+  color: #e0e0e0;
+  padding-left: 0;
+}
 
-  ul li {
-    margin-bottom: 10px;
-  }
+ul li {
+  margin-bottom: 10px;
+  transition: transform 0.3s ease, color 0.3s ease; /* Adding transition for smooth hover effect */
+}
+
+/* Hover effect */
+ul li:hover {
+  transform: translateX(10px); /* Moves the list item to the right */
+  color: #ffffff; /* Change color on hover */
+}
 
   .button {
     background-color: #6200ea;
