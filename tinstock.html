@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tinland Stock Tracker</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        h1 { color: #4CAF50; }
+        .stock-price { font-size: 2em; margin-top: 20px; }
+        #stockChart { max-width: 1000px; max-height: 500px; margin: 20px auto; }
+        .tabs { display: flex; justify-content: center; margin-top: 20px; }
+        .tab { padding: 10px 20px; cursor: pointer; border: 1px solid #ccc; }
+        .tab.active { background-color: #4CAF50; color: white; }
+    </style>
+</head>
+<body>
+    <h1>Tinland Stock Tracker</h1>
+    <div class="stock-price" id="currentPrice">2.00 Ration Credits</div>
+    <div class="tabs">
+        <div class="tab active" onclick="setTimeFrame('1D')">1 Day</div>
+        <div class="tab" onclick="setTimeFrame('1W')">1 Week</div>
+        <div class="tab" onclick="setTimeFrame('1M')">1 Month</div>
+        <div class="tab" onclick="setTimeFrame('1Y')">1 Year</div>
+    </div>
+    <canvas id="stockChart"></canvas>
+
+    <script>
+        let stockPrice = parseFloat(localStorage.getItem('stockPrice')) || 2.00;
+        let priceHistory = JSON.parse(localStorage.getItem('priceHistory')) || [stockPrice];
+        let timeFrame = '1D';
+
+        function updateStockPrice() {
+            let change;
+            let randomValue = Math.random();
+
+            if (randomValue < 0.1) {
+                change = stockPrice * (Math.random() * 0.5 + 0.5); 
+            } else if (randomValue < 0.3) {
+                change = -stockPrice * (Math.random() * 0.3 + 0.1); 
+            } else {
+                change = (Math.random() - 0.5) * 2.0;
+            }
+
+            stockPrice = Math.min(20.00, Math.max(0.10, stockPrice + change));
+            document.querySelector('.stock-price').textContent = stockPrice.toFixed(2) + " Ration Credits";
+
+            priceHistory.push(stockPrice);
+            if (priceHistory.length > 365) priceHistory.shift();
+            localStorage.setItem('stockPrice', stockPrice.toFixed(2));
+            localStorage.setItem('priceHistory', JSON.stringify(priceHistory));
+            updateChart();
+        }
+
+        function setTimeFrame(tf) {
+            timeFrame = tf;
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelector(`.tab[onclick="setTimeFrame('${tf}')"]`).classList.add('active');
+            updateChart();
+        }
+
+        function getVisibleHistory() {
+            let visibleHistory;
+            if (timeFrame === '1D') {
+                visibleHistory = priceHistory.slice(-24);
+            } else if (timeFrame === '1W') {
+                visibleHistory = priceHistory.slice(-168);
+            } else if (timeFrame === '1M') {
+                visibleHistory = priceHistory.slice(-720);
+            } else if (timeFrame === '1Y') {
+                visibleHistory = priceHistory;
+            }
+            return visibleHistory;
+        }
+
+        function updateChart() {
+            const ctx = document.getElementById('stockChart').getContext('2d');
+            const chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: Array.from({ length: getVisibleHistory().length }, (_, i) => i + 1),
+                    datasets: [{
+                        label: 'Stock Price (Ration Credits)',
+                        data: getVisibleHistory(),
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1,
+                        fill: false
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('currentPrice').textContent = stockPrice.toFixed(2) + " Ration Credits";
+            updateChart();
+        });
+
+        setInterval(updateStockPrice, 1000);
+    </script>
+</body>
+</html>
