@@ -131,7 +131,7 @@
                 document.getElementById(`${stock}Price`).textContent = 
                     `${stockData[stock].price.toFixed(2)} Ration Credits ($${(stockData[stock].price / 3).toFixed(2)})`;
                 updateChart(stock);
-            });
+            }); 
         }
 
         document.addEventListener('DOMContentLoaded', initializeStocks);
