@@ -1,22 +1,244 @@
-<h2>We are currently fixing some bugs!</h2>
-<h3>Check out the bug tracker for more info!</h3>
-  <div class="navbar">
-      <ul>
-        <li><a href="sitestatus.html">Bug Tracker</a></li>
-
-      </ul>
-    </div>
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tinland</title>
-  <link rel="stylesheet" href="styles.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #121212;
+      color: #e0e0e0;
+      overflow-y: auto;
+    }
+
+    .welcome-screen {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #6200ea;
+      color: white;
+      text-align: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 10;
+      transition: transform 1.5s cubic-bezier(0.23, 1, 0.32, 1), opacity 1.5s ease;
+    }
+
+    .welcome-screen.hidden {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+
+    .welcome-screen h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+    }
+
+    .welcome-screen button {
+      background-color: #3700b3;
+      color: white;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 30px;
+      font-size: 1.2em;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .welcome-screen button:hover {
+      background-color: #23036a;
+    }
+
+    header {
+      background-color: #6200ea;
+      padding: 40px 0;
+      text-align: center;
+      color: white;
+      border-radius: 10px;
+      margin-bottom: 30px;
+    }
+
+    header h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+
+    header h3 {
+      font-size: 1.5em;
+    }
+
+    main {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .column {
+      background-color: #1c1c1c;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    h2 {
+      font-size: 2.5em;
+      color: #FF79C6;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    h3 {
+      font-size: 2em;
+      text-align: center;
+    }
+
+    p {
+      color: #B0B0B0;
+      margin-bottom: 20px;
+    }
+
+    ul {
+      font-size: 18px;
+      list-style: none;
+      color: #e0e0e0;
+      padding-left: 0;
+    }
+
+    ul li {
+      margin-bottom: 10px;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    ul li:hover {
+      transform: translateX(10px);
+      color: #ffffff;
+    }
+
+    .button {
+      background-color: #6200ea;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 30px;
+      text-decoration: none;
+      text-align: center;
+      font-size: 1em;
+      display: inline-block;
+      transition: background-color 0.3s ease;
+      margin-top: 10px;
+    }
+
+    .button:hover {
+      background-color: #3700b3;
+    }
+
+    @media screen and (max-width: 768px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+
+      header h1 {
+        font-size: 2em;
+      }
+
+      header h3 {
+        font-size: 1.2em;
+      }
+
+      .column {
+        padding: 20px;
+      }
+
+      .button {
+        padding: 8px 16px;
+        font-size: 0.9em;
+      }
+    }
+
+    .navbar {
+      background-color: #333;
+      position: sticky;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .navbar ul {
+      list-style-type: none;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar ul li {
+      display: inline;
+      margin-right: 20px;
+    }
+
+    .navbar ul li a {
+      text-decoration: none;
+      color: white;
+      padding: 15px 20px;
+      display: inline-block;
+    }
+
+    .error-message {
+      color: #ff4d4d;
+      font-size: 1.2em;
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    #login-btn {
+      display: inline-block;
+      background-color: #6200ea;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 25px;
+      font-size: 1em;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    #login-btn:hover {
+      background-color: #3700b3;
+    }
+
+    #welcome-message {
+      font-size: 1.5em;
+      text-align: center;
+      margin: 20px 0;
+      color: #e0e0e0;
+    }
+  </style>
 </head>
 <body>
+  <div class="welcome-screen" id="welcome-screen">
+    <div>
+      <h1>Welcome to Tinland</h1>
+      <button id="enter-btn">Enter Tinland</button>
+    </div>
+  </div>
 
-  <header> 
+  <header>
     <div class="container">
       <h1>Welcome to Tinland!</h1>
       <h3>A land of the free</h3>
@@ -35,15 +257,12 @@
       </ul>
     </div>
 
+    <h2>Our Beliefs</h2>
 
-        <h2>Our Beliefs</h2>
-
-          <h3>Freedom of worship</h3>
-          <h3>Equal representation</h3>
-          <h3>Secular government</h3>
-          <h3>Fun</h3>
-
-  
+    <h3>Freedom of worship</h3>
+    <h3>Equal representation</h3>
+    <h3>Secular government</h3>
+    <h3>Fun</h3>
 
     <section class="container">
       <div class="column">
@@ -65,7 +284,7 @@
         <h3>War with Timland!</h3>
         <p>We have officially gone to war with Timland. Serving in the army is optional.</p>
         <a href="military.html" class="button">Learn More</a>
-        <h3> First Rations Bag Bought</h3>
+        <h3>First Rations Bag Bought</h3>
         <p>The first rations bag has been bought! IT has 200 oreos and 200 dabaitu</p>
         <a href="re.html" class="button">Learn More</a>
       </div>
@@ -84,377 +303,140 @@
     </section>
   </main>
 
-  <script src="app.js"></script>
+  <script>
+    const users = {
+      Liam: {
+        username: 'Liam',
+        password: 'password1',
+        email: 'Liam!',
+        role: 'You have 40 rations credits',
+        bio: 'More features coming soon',
+      },
+      Johnny: {
+        username: 'Johnsidus the Third',
+        password: 'password2',
+        email: 'Johnsidius the third!',
+        role: 'You have 40 rations credits',
+        bio: 'More features coming soon',
+      },
+      Kevin: {
+        username: 'Kevin',
+        password: 'password3',
+        email: 'Kevin!',
+        role: 'you have 40 rations credits',
+        bio: 'More features coming soon',
+      },
+      Noah: {
+        username: 'Noah',
+        password: 'noahchoi123',
+        email: 'Noah!',
+        role: 'you have 40 rations credits',
+        bio: 'More features coming soon',
+      },
+      Maks: {
+        username: 'Maks',
+        password: 'password4',
+        email: 'Maks!',
+        role: 'you have 40 rations credits',
+        bio: 'More features coming soon',
+      },
+      Charles: {
+        username: 'Charles',
+        password: 'password5',
+        email: 'Charles!',
+        role: 'you have 40 rations credits',
+        bio: 'More features coming soon',
+      },
+      Taxo: {
+        username: 'Maxo Taxo',
+        password: 'password5',
+        email: 'Maxo Taxo!',
+        role: 'you have 40 rations credits',
+        bio: 'More features coming soon',
+      },
+      Dayden: {
+        username: 'Dayden',
+        password: 'password6',
+        email: 'Dayden!',
+        role: 'you have 10 rations credits',
+        bio: 'More features coming soon',
+      },
+      Chris: {
+        username: 'Chris',
+        password: 'password7',
+        email: 'Chris!',
+        role: 'you have 40 rations credits',
+        bio: 'More features coming soon',
+      },
+    };
+
+    document.getElementById('citizenship-test-form')?.addEventListener('submit', function (event) {
+      event.preventDefault();
+      window.location.href = 'index.html';
+    });
+
+    document.getElementById('login-form')?.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      const user = users[username];
+      if (user && user.password === password) {
+        localStorage.setItem('username', username);
+        window.location.href = 'user-info.html';
+      } else {
+        document.getElementById('error-message').textContent = 'Invalid username or password';
+      }
+    });
+
+    window.onload = function () {
+      const username = localStorage.getItem('username');
+
+      if (username) {
+        const user = users[username];
+        document.getElementById('welcome-message').textContent = `Hello, ${user.username}!`;
+        document.getElementById('login-btn').style.display = 'none';
+      } else {
+        document.getElementById('welcome-message').textContent = 'You are not logged in.';
+        document.getElementById('login-btn').style.display = 'block';
+      }
+
+      document.getElementById('logout-btn')?.addEventListener('click', function () {
+        localStorage.removeItem('username');
+        window.location.reload();
+      });
+
+      document.getElementById('profile-btn')?.addEventListener('click', function () {
+        window.location.href = 'user-info.html';
+      });
+    };
+
+    if (window.location.pathname.includes('user-info.html')) {
+      const username = localStorage.getItem('username');
+      if (username) {
+        const user = users[username];
+        document.getElementById('user-name').textContent = ` Hello, ${user.username}`;
+        document.getElementById('user-role').textContent = ` Congrats: ${user.role}`;
+        document.getElementById('user-bio').textContent = `Dont worry! ${user.bio}`;
+      } else {
+        window.location.href = 'login.html';
+      }
+
+      document.getElementById('back-btn').addEventListener('click', function () {
+        window.location.href = 'index.html';
+      });
+    }
+
+    const welcomeScreen = document.getElementById('welcome-screen');
+    const enterButton = document.getElementById('enter-btn');
+
+    enterButton.addEventListener('click', () => {
+      welcomeScreen.classList.add('hidden');
+      setTimeout(() => {
+        welcomeScreen.style.display = 'none';
+      }, 1500);
+    });
+  </script>
 </body>
-</html> -->
-
-<style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-
-  body {
-    background-color: #121212;
-    color: #e0e0e0;
-    line-height: 1.6;
-    padding: 20px 0;
-    font-size: 16px;
-  }
-
-  header {
-    background-color: #6200ea;
-    padding: 40px 0;
-    text-align: center;
-    color: white;
-    border-radius: 10px;
-    margin-bottom: 30px;
-  }
-
-  header h1 {
-    font-size: 2.5em;
-    margin-bottom: 10px;
-  }
-
-  header p {
-    font-size: 1.2em;
-  }
-
-  main {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-  }
-
-  .container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .column {
-    background-color: #1c1c1c;
-    padding: 25px;
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  }
-
-  h2 {
-    font-size: 1.8em;
-    color: #FF79C6;
-    margin-bottom: 20px;
-  }
-
-
-  p {
-    color: #B0B0B0;
-    margin-bottom: 20px;
-  }
-
-ul {
-  font-size: 18px;
-  list-style: none;
-  color: #e0e0e0;
-  padding-left: 0;
-}
-
-ul li {
-  margin-bottom: 10px;
-  transition: transform 0.3s ease, color 0.3s ease; /* Adding transition for smooth hover effect */
-}
-
-/* Hover effect */
-ul li:hover {
-  transform: translateX(10px); /* Moves the list item to the right */
-  color: #ffffff; /* Change color on hover */
-}
-
-  .button {
-    background-color: #6200ea;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 30px;
-    text-decoration: none;
-    text-align: center;
-    font-size: 1em;
-    display: inline-block;
-    transition: background-color 0.3s ease;
-    margin-top: 10px;
-  }
-
-  .button:hover {
-    background-color: #3700b3;
-  }
-
-  .login {
-    text-align: center;
-  }
-
-  .error-message {
-    color: #ff4d4d;
-    font-size: 14px;
-    text-align: center;
-  }
-
-  .login .btn {
-    background-color: #6200ea;
-    padding: 12px 24px;
-    border-radius: 10px;
-    text-decoration: none;
-    color: white;
-    font-size: 1.2em;
-    transition: background-color 0.3s ease;
-  }
-
-  .login .btn:hover {
-    background-color: #3700b3;
-  }
-
-  @media screen and (max-width: 768px) {
-    .container {
-      grid-template-columns: 1fr;
-    }
-
-    header h1 {
-      font-size: 2em;
-    }
-
-    header p {
-      font-size: 1em;
-    }
-
-    .column {
-      padding: 20px;
-    }
-
-    .button {
-      padding: 8px 16px;
-      font-size: 0.9em;
-    }
-
-    .login .btn {
-      padding: 10px 20px;
-      font-size: 1em;
-    }
-  }
-
-  .navbar {
-    background-color: #333;
-    position: sticky;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-  }
-
-  .navbar ul {
-    list-style-type: none;
-    text-align: center;
-    margin: 0;
-    padding: 0;
-  }
-
-  .navbar ul li {
-    display: inline;
-    margin-right: 20px;
-  }
-
-  .navbar ul li a {
-    text-decoration: none;
-    color: white;
-    padding: 15px 20px;
-    display: inline-block;
-  }
-
-
-h2 {
-  font-size: 2.5em; /* Make the heading bigger */
-  color: #FF79C6;
-  text-align: center; /* Center the heading */
-  margin-bottom: 20px;
-}
-h3{
-  font-size: 2.0em;
-  text-align:center;
-}
-  .popup {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: white;
-      padding: 20px;
-      border-radius: 5px;
-      z-index: 100;
-      width: 300px;
-      height: 700px;
-      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-    }
-
-    .popup-content {
-      text-align: center;
-      color: #00;
-    }
-
-    .close-button {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      cursor: pointer;
-      font-size: 20px;
-    }
-  .popup h2{
-    text-align: center;
-    color: #00000;
-  }
-  .popup h3{
-    text-align: center;
-    color: #0;
-  }
-</style> 
-
-<script>
-  // Sample accounts for demo purposes
-const users = {
-  Liam: {
-    username: 'Liam',
-    password: 'password1',
-    email: 'Liam!',
-    role: 'You have 40 rations credits',
-    bio: 'More features coming soon',
-  },
-  Johnny: {
-    username: 'Johnsidus the Third',
-    password: 'password2',
-    email: 'Johnsidius the third!',
-    role: 'You have 40 rations credits',
-    bio: 'More features coming soon',
-  },
-  Kevin: {
-    username: 'Kevin',
-    password: 'password3',
-    email: 'Kevin!',
-    role: 'you have 40 rations credits',
-    bio: 'More features coming soon',
-  },
-    Noah: {
-    username: 'Noah',
-    password: 'noahchoi123',
-    email: 'Noah!',
-    role: 'you have 40 rations credits',
-    bio: 'More features coming soon',
-  },
-  Maks: {
-    username: 'Maks',
-    password: 'password4',
-    email: 'Maks!',
-    role: 'you have 40 rations credits',
-    bio: 'More features coming soon',
-  },
-  Charles: {
-    username: 'Charles',
-    password: 'password5',
-    email: 'Charles!',
-    role: 'you have 40 rations credits',
-    bio: 'More features coming soon',
-  },
-  Taxo: {
-    username: 'Maxo Taxo',
-    password: 'password5',
-    email: 'Maxo Taxo!',
-    role: 'you have 40 rations credits',
-    bio: 'More features coming soon',
-  },
-  Dayden: {
-    username: 'Dayden',
-    password: 'password6',
-    email: 'Dayden!',
-    role: 'you have 10 rations credits',
-    bio: 'More features coming soon',
-  },
-    Chris: {
-    username: 'Chris',
-    password: 'password7',
-    email: 'Chris!',
-    role: 'you have 40 rations credits',
-    bio: 'More features coming soon',
-  },
-};
-document.getElementById('citizenship-test-form')?.addEventListener('submit', function (event) {
-  event.preventDefault();
-  window.location.href = 'index.html';
-});
-// Handle login form submission (on login page)
-document.getElementById('login-form')?.addEventListener('submit', function (event) {
-  event.preventDefault();
-
-  // Get form data
-  const username = document.getElementById('username').value;
-  const password = document.getElementById('password').value;
-
-  // Check if the username and password match any user
-  const user = users[username];
-  if (user && user.password === password) {
-    // Store user info in localStorage (for demo purposes)
-    localStorage.setItem('username', username);
-    // Redirect directly to user info page
-    window.location.href = 'user-info.html';
-  } else {
-    // Display error message if login fails
-    document.getElementById('error-message').textContent = 'Invalid username or password';
-  }
-});
-
-// On homepage (index.html), check if user is logged in and show relevant buttons
-window.onload = function () {
-  const username = localStorage.getItem('username');
-
-  if (username) {
-    const user = users[username];
-    document.getElementById('welcome-message').textContent = `Hello, ${user.username}!`;
-    document.getElementById('login-btn').style.display = 'none';
-    document.getElementById('logout-btn').style.display = 'block';
-    document.getElementById('profile-btn').style.display = 'block';
-  } else {
-    document.getElementById('welcome-message').textContent = 'You are not logged in.';
-    document.getElementById('login-btn').style.display = 'block';
-    document.getElementById('logout-btn').style.display = 'none';
-    document.getElementById('profile-btn').style.display = 'none';
-  }
-
-  // Handle logout
-  document.getElementById('logout-btn')?.addEventListener('click', function () {
-    localStorage.removeItem('username');
-    window.location.reload();
-  });
-
-  // Handle profile redirection
-  document.getElementById('profile-btn')?.addEventListener('click', function () {
-    window.location.href = 'user-info.html';
-  });
-};
-
-// On user-info.html, display user info
-if (window.location.pathname.includes('user-info.html')) {
-  const username = localStorage.getItem('username');
-  if (username) {
-    const user = users[username];
-    document.getElementById('user-name').textContent = ` Hello, ${user.username}`;
-    document.getElementById('user-role').textContent = ` Congrats: ${user.role}`;
-    document.getElementById('user-bio').textContent = `Dont worry! ${user.bio}`;
-  } else {
-    // Redirect to login if user is not logged in
-    window.location.href = 'login.html';
-  }
-
-  document.getElementById('back-btn').addEventListener('click', function () {
-    window.location.href = 'index.html';
-  });
-}
-   
-</script>
+</html>
