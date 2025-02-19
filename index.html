@@ -3,461 +3,68 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tinland</title>
-  <h2>Sorry!</h2>
-  <h2>The Tinland Site is down Right now!</h2>
-  <h3>Check back later for updates!</h3>
+  <title>Kagannation</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
     body {
-      background-color: #121212;
-      color: #e0e0e0;
-      overflow-y: auto;
-    }
-
-    .welcome-screen {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #ff7e5f, #feb47b);
       display: flex;
+      flex-direction: column;
+      height: 100vh;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      background-color: #6200ea;
-      color: white;
       text-align: center;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 10;
-      transition: transform 1.5s cubic-bezier(0.23, 1, 0.32, 1), opacity 1.5s ease;
+      color: white;
     }
 
-    .welcome-screen.hidden {
-      transform: translateY(-100%);
-      opacity: 0;
-    }
-li{
-  text-alaign: center;
-}
-    .welcome-screen h1 {
-      font-size: 3em;
+    h1 {
+      font-size: 3rem;
       margin-bottom: 20px;
     }
 
-    .welcome-screen button {
-      background-color: #3700b3;
+    .main-button {
+      background-color: #2c3e50;
       color: white;
-      padding: 15px 30px;
+      padding: 20px 40px;
+      font-size: 2rem;
       border: none;
-      border-radius: 30px;
-      font-size: 1.2em;
+      border-radius: 10px;
       cursor: pointer;
       transition: background-color 0.3s ease;
     }
 
-    .welcome-screen button:hover {
-      background-color: #23036a;
+    .main-button:hover {
+      background-color: #34495e;
     }
 
-    header {
-      background-color: #6200ea;
-      padding: 40px 0;
-      text-align: center;
-      color: white;
-      border-radius: 10px;
-      margin-bottom: 30px;
-    }
-
-    header h1 {
-      font-size: 2.5em;
-      margin-bottom: 10px;
-    }
-
-    header h3 {
-      font-size: 1.5em;
-    }
-
-    main {
-      display: flex;
-      flex-direction: column;
-      gap: 40px;
-    }
-
-    .container {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .column {
-      background-color: #1c1c1c;
-      padding: 25px;
-      border-radius: 15px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    }
-
-    h2 {
-      font-size: 2.5em;
-      color: #FF79C6;
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    h3 {
-      font-size: 2em;
-      text-align: center;
-    }
-
-    p {
-      color: #B0B0B0;
-      margin-bottom: 20px;
-    }
-
-    ul {
-      font-size: 18px;
-      list-style: none;
-      color: #e0e0e0;
-      padding-left: 0;
-    }
-
-    ul li {
-      margin-bottom: 10px;
-      transition: transform 0.3s ease, color 0.3s ease;
-    }
-
-    ul li:hover {
-      transform: translateX(10px);
-      color: #ffffff;
-    }
-
-    .button {
-      background-color: #6200ea;
+    .login-button {
+      position: absolute;
+      bottom: 20px;
+      background-color: #16a085;
       color: white;
       padding: 10px 20px;
-      border-radius: 30px;
-      text-decoration: none;
-      text-align: center;
-      font-size: 1em;
-      display: inline-block;
-      transition: background-color 0.3s ease;
-      margin-top: 10px;
-    }
-
-    .button:hover {
-      background-color: #3700b3;
-    }
-
-    @media screen and (max-width: 768px) {
-      .container {
-        grid-template-columns: 1fr;
-      }
-
-      header h1 {
-        font-size: 2em;
-      }
-
-      header h3 {
-        font-size: 1.2em;
-      }
-
-      .column {
-        padding: 20px;
-      }
-
-      .button {
-        padding: 8px 16px;
-        font-size: 0.9em;
-      }
-    }
-
-    .navbar {
-      background-color: #333;
-      position: sticky;
-      top: 0;
-      width: 100%;
-      z-index: 1000;
-    }
-
-    .navbar ul {
-      list-style-type: none;
-      text-align: center;
-      margin: 0;
-      padding: 0;
-    }
-
-    .navbar ul li {
-      display: inline;
-      margin-right: 20px;
-    }
-
-    .navbar ul li a {
-      text-decoration: none;
-      color: white;
-      padding: 15px 20px;
-      display: inline-block;
-    }
-
-    .error-message {
-      color: #ff4d4d;
-      font-size: 1.2em;
-      text-align: center;
-      margin: 20px 0;
-    }
-
-    #login-btn {
-      display: inline-block;
-      background-color: #6200ea;
-      color: white;
-      padding: 12px 24px;
-      border-radius: 25px;
-      font-size: 1em;
-      text-decoration: none;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
       transition: background-color 0.3s ease;
     }
 
-    #login-btn:hover {
-      background-color: #3700b3;
+    .login-button:hover {
+      background-color: #1abc9c;
     }
 
-    #welcome-message {
-      font-size: 1.5em;
-      text-align: center;
-      margin: 20px 0;
-      color: #e0e0e0;
-    }
   </style>
-<!-- </head>
+</head>
 <body>
-  <div class="welcome-screen" id="welcome-screen">
-    <div>
-      <h1>Welcome to Tinland</h1>
-      <button id="enter-btn">Enter Tinland</button>
-    </div>
-  </div>
-
-  <header>
-    <div class="container">
-      <h1>Welcome to Tinland!</h1>
-      <h3>A land of the free</h3>
-    </div>
-  </header>
--->
-  <h3> To check your account go to login. </h3>
-  <h3>To apply to tinland DM max.</h3>
-  <br>
-  <br>
-  <br>
-  <br>
-  
-  <main>
-    <div class="navbar">
-      <ul>
-        <li><a href="login.html">Login</a></li>
-        <li><a href=docs.html>Tin - docs</a></li>
-      </ul>
-    </div> 
-    <br>
-    <br>
-    <br>
-    <h2> Here's why we aren't online right now:</h2>
-    <br>
-    <ul>
-      <li> We have some major bugs we need to take care of</li>
-      <br>
-      <li> We need to fix and update the wording of our site.</li>
-    </ul>
-    <br>
-    <h2>Thank you for visiting! Come back soon!</h2>
-<!--  <---
-    <h2>Our Beliefs</h2>
-
-    <h3>Freedom of worship</h3>
-    <h3>Equal representation</h3>
-    <h3>Secular government</h3>
-    <h3>Fun</h3>
-
-    <section class="container">
-      <div class="column">
-        <h2>Citizenship</h2>
-        <p>Join our cause and make a difference! We accept dual citizenship and inactive members. Just fill out the form and become part of something truly special.</p>
-        <a href="citizenship-test.html" class="button">Become a Citizen</a>
-      </div>
-
-      <div class="column">
-        <h2>Donations</h2>
-        <p>Tinland accepts donations of Cash, and candy.</p>
-        <a href="donate.html" class="button">Learn More about Donations</a>
-      </div>
-    </section>
-
-    <section class="container">
-      <div class="column">
-        <h2>News</h2>
-        <h3>War with Timland!</h3>
-        <p>We have officially gone to war with Timland. Serving in the army is optional.</p>
-        <a href="military.html" class="button">Learn More</a>
-        <h3>First Rations Bag Bought</h3>
-        <p>The first rations bag has been bought! IT has 200 oreos and 200 dabaitu</p>
-        <a href="re.html" class="button">Learn More</a>
-      </div>
-
-      <div class="column">
-        <h2>Lemon Cult</h2>
-        <p>Lemon Cult is a Tinland affiliate focused on lemons. Visit the site to learn more!</p>
-        <a href="lemoncult.html" class="button">Lemon Cult</a>
-      </div>
-    </section>
-
-    <section class="login">
-      <h1 id="welcome-message">Welcome to Tinland</h1>
-      <a href="login.html" id="login-btn" class="btn" style="display: none;">Login</a>
-      <p id="error-message" class="error-message"></p>
-    </section>
-  </main> -->
-
-  <script>
-    const users = {
-      Liam: {
-        username: 'Liam',
-        password: 'password1',
-        email: 'Liam!',
-        role: 'You have 40 rations credits',
-        bio: 'More features coming soon',
-      },
-      Johnny: {
-        username: 'Johnsidus the Third',
-        password: 'password2',
-        email: 'Johnsidius the third!',
-        role: 'You have 40 rations credits',
-        bio: 'More features coming soon',
-      },
-      Kevin: {
-        username: 'Kevin',
-        password: 'password3',
-        email: 'Kevin!',
-        role: 'you have 40 rations credits',
-        bio: 'More features coming soon',
-      },
-      Noah: {
-        username: 'Noah',
-        password: 'noahchoi123',
-        email: 'Noah!',
-        role: 'you have 40 rations credits',
-        bio: 'More features coming soon',
-      },
-      Maks: {
-        username: 'Maks',
-        password: 'password4',
-        email: 'Maks!',
-        role: 'you have 40 rations credits',
-        bio: 'More features coming soon',
-      },
-      Charles: {
-        username: 'Charles',
-        password: 'password5',
-        email: 'Charles!',
-        role: 'you have 40 rations credits',
-        bio: 'More features coming soon',
-      },
-      Taxo: {
-        username: 'Maxo Taxo',
-        password: 'password5',
-        email: 'Maxo Taxo!',
-        role: 'you have 40 rations credits',
-        bio: 'More features coming soon',
-      },
-      Dayden: {
-        username: 'Dayden',
-        password: 'password6',
-        email: 'Dayden!',
-        role: 'you have 10 rations credits',
-        bio: 'More features coming soon',
-      },
-      Chris: {
-        username: 'Chris',
-        password: 'password7',
-        email: 'Chris!',
-        role: 'you have 40 rations credits',
-        bio: 'More features coming soon',
-      },
-    };
-
-    document.getElementById('citizenship-test-form')?.addEventListener('submit', function (event) {
-      event.preventDefault();
-      window.location.href = 'index.html';
-    });
-
-    document.getElementById('login-form')?.addEventListener('submit', function (event) {
-      event.preventDefault();
-
-      const username = document.getElementById('username').value;
-      const password = document.getElementById('password').value;
-
-      const user = users[username];
-      if (user && user.password === password) {
-        localStorage.setItem('username', username);
-        window.location.href = 'user-info.html';
-      } else {
-        document.getElementById('error-message').textContent = 'Invalid username or password';
-      }
-    });
-
-    window.onload = function () {
-      const username = localStorage.getItem('username');
-
-      if (username) {
-        const user = users[username];
-        document.getElementById('welcome-message').textContent = `Hello, ${user.username}!`;
-        document.getElementById('login-btn').style.display = 'none';
-      } else {
-        document.getElementById('welcome-message').textContent = 'You are not logged in.';
-        document.getElementById('login-btn').style.display = 'block';
-      }
-
-      document.getElementById('logout-btn')?.addEventListener('click', function () {
-        localStorage.removeItem('username');
-        window.location.reload();
-      });
-
-      document.getElementById('profile-btn')?.addEventListener('click', function () {
-        window.location.href = 'user-info.html';
-      });
-    };
-
-    if (window.location.pathname.includes('user-info.html')) {
-      const username = localStorage.getItem('username');
-      if (username) {
-        const user = users[username];
-        document.getElementById('user-name').textContent = ` Hello, ${user.username}`;
-        document.getElementById('user-role').textContent = ` Congrats: ${user.role}`;
-        document.getElementById('user-bio').textContent = `Dont worry! ${user.bio}`;
-      } else {
-        window.location.href = 'login.html';
-      }
-
-      document.getElementById('back-btn').addEventListener('click', function () {
-        window.location.href = 'index.html';
-      });
-    }
-
-    const welcomeScreen = document.getElementById('welcome-screen');
-    const enterButton = document.getElementById('enter-btn');
-
-    enterButton.addEventListener('click', () => {
-      welcomeScreen.classList.add('hidden');
-      setTimeout(() => {
-        welcomeScreen.style.display = 'none';
-      }, 1500);
-    });
-  </script>
+<script>
+  // I know you are checking zain its not AI!
+</script>
+  <h1>Hi there!</h1>
+  <h2> Tinland is now Kaganation</h2>
+  <h2> More Kaganation stuff may come soon!</h2>
+  <button class="main-button" onclick="window.location.href='https://wojiaotim.com'">Timland</button>
 </body>
+
 </html>
- -->
